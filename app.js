@@ -20,6 +20,29 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+io.on("connection", (uniquesocket) => {
+    console.log("connected");
+
+    if (!players.white) {
+        players.white = uniquesocket.id;
+        uniquesocket.emit("playerRole", "W")
+    } else if (!players.black) {
+        players.black = uniquesocket.id;
+        uniquesocket.emit("playerRole", "B")
+    } else {
+        uniquesocket.emit("spectatorRole");
+    }
+
+    uniquesocket.on("disconnect", () => {
+        if (socket.id === players.white) {
+            delete players.white
+        } else if (socket.id === players.black) {
+            delete players.black;
+        }
+    })
+
+})
+
 server.listen(3000, () => {
     console.log("Server started");
 })
