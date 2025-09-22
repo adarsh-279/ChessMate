@@ -3,66 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e293b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <title>ChessMate</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/images/android-chrome-192x192.png" type="image/png" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <style>
-        .chessboard {
-            display: grid;
-            grid-template-columns: repeat(8, minmax(0, 1fr));
-            grid-template-rows: repeat(8, minmax(0, 1fr));
-            width: 400px;
-            height: 400px;
-            transform: rotate(0deg);
-        }
+    <style>
+      .chessboard {
+        display: grid;
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        grid-template-rows: repeat(8, minmax(0, 1fr));
+        width: 400px;
+        height: 400px;
+        transform: rotate(0deg);
+      }
 
-        .piece.white {
-            color: white;
-            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
-        }
+      .piece.white {
+        color: white;
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+      }
 
-        .piece.black {
-            color: black;
-        }
+      .piece.black {
+        color: black;
+      }
 
-        .flipped {
-            transform: rotate(180deg);
-        }
+      .flipped {
+        transform: rotate(180deg);
+      }
 
-        .square {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      .square {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .square.light {
-            background-color: #aff4f1;
-        }
+      .square.light {
+        background-color: #aff4f1;
+      }
 
-        .square.dark {
-            background-color: #258184;
-        }
+      .square.dark {
+        background-color: #258184;
+      }
 
-        .piece {
-            font-size: 36px;
-            cursor: pointer;
-        }
+      .piece {
+        font-size: 36px;
+        cursor: pointer;
+      }
 
-        .piece.draggable {
-            cursor: grab;
-        }
+      .piece.draggable {
+        cursor: grab;
+      }
 
-        .dragging {
-            opacity: 0.5;
-        }
+      .dragging {
+        opacity: 0.5;
+      }
 
-        /* Rotate pieces for black player */
-        .flipped .piece {
-            transform: rotate(180deg);
-        }
+      /* Rotate pieces for black player */
+      .flipped .piece {
+        transform: rotate(180deg);
+      }
     </style>
   </head>
   <body>
-    <div class="w-full h-screen bg-zinc-800 flex items-center justify-center">
+    <div
+      class="h-screen w-screen overflow-hidden 2xl:w-full 2xl:h-screen bg-zinc-800 flex flex-col items-center justify-center"
+    >
+      <h1 class="text-white text-4xl mb-10">ChessMate</h1>
       <div class="chessboard w-120 h-120"></div>
     </div>
 
